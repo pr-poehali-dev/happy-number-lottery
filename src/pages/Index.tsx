@@ -128,7 +128,6 @@ export default function Index() {
             <nav className="hidden md:flex gap-6">
               <a href="#home" className="text-white/90 hover:text-white transition-colors font-medium drop-shadow">Главная</a>
               <a href="#rules" className="text-white/90 hover:text-white transition-colors font-medium drop-shadow">Правила</a>
-              <a href="#prizes" className="text-white/90 hover:text-white transition-colors font-medium drop-shadow">Призы</a>
               <a href="#contact" className="text-white/90 hover:text-white transition-colors font-medium drop-shadow">Контакты</a>
             </nav>
           </div>
@@ -232,30 +231,6 @@ export default function Index() {
               )}
             </CardContent>
           </Card>
-        </section>
-
-        <section id="prizes" className="space-y-8">
-          <h2 className="text-5xl font-bold text-center text-white drop-shadow-2xl">
-            Призовой Фонд 💰
-          </h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
-            {[
-              { amount: 5000, count: 2, icon: '💎', color: 'from-purple-500 to-pink-500' },
-              { amount: 2000, count: 3, icon: '⭐', color: 'from-yellow-500 to-orange-500' },
-              { amount: 500, count: 3, icon: '🏆', color: 'from-orange-500 to-red-500' },
-              { amount: 100, count: 53, icon: '🎁', color: 'from-blue-500 to-cyan-500' },
-              { amount: 50, count: 105, icon: '🎯', color: 'from-green-500 to-emerald-500' },
-            ].map((prize) => (
-              <Card key={prize.amount} className="border-2 border-white/30 bg-white/95 backdrop-blur-md overflow-hidden">
-                <div className={`h-2 bg-gradient-to-r ${prize.color}`}></div>
-                <CardContent className="pt-6 text-center space-y-3">
-                  <div className="text-5xl">{prize.icon}</div>
-                  <div className="text-3xl font-bold text-foreground">{prize.amount} ₽</div>
-                  <p className="text-sm text-muted-foreground">{prize.count} {prize.count === 1 ? 'приз' : prize.count < 5 ? 'приза' : 'призов'}</p>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
         </section>
 
         <section id="rules" className="space-y-8">
