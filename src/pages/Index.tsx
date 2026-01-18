@@ -2,19 +2,10 @@ import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import Icon from '@/components/ui/icon';
 import { toast } from 'sonner';
 
-const winningNumbers = [7, 13, 21, 42, 88, 99];
-
-const topWinners = [
-  { name: 'Алексей М.', prize: '🎁 iPhone 15 Pro', number: 7, date: '15.01.2026' },
-  { name: 'Мария К.', prize: '💎 MacBook Air', number: 42, date: '14.01.2026' },
-  { name: 'Дмитрий П.', prize: '🎧 AirPods Pro', number: 13, date: '13.01.2026' },
-  { name: 'Елена С.', prize: '⌚ Apple Watch', number: 88, date: '12.01.2026' },
-  { name: 'Иван Б.', prize: '🎮 PlayStation 5', number: 21, date: '11.01.2026' },
-];
+const winningNumbers = [3567, 6473, 9365, 1640, 7473];
 
 export default function Index() {
   const [luckyNumber, setLuckyNumber] = useState('');
@@ -41,7 +32,17 @@ export default function Index() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-50 via-pink-50 to-orange-50">
+    <div 
+      className="min-h-screen relative"
+      style={{
+        backgroundImage: 'url(https://cdn.poehali.dev/files/IMG_20260118_162348_652.jpg)',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundAttachment: 'fixed'
+      }}
+    >
+      <div className="absolute inset-0 bg-black/40 backdrop-blur-sm"></div>
+
       {showConfetti && (
         <div className="fixed inset-0 pointer-events-none z-50 overflow-hidden">
           {[...Array(50)].map((_, i) => (
@@ -60,45 +61,34 @@ export default function Index() {
         </div>
       )}
 
-      <header className="bg-white/80 backdrop-blur-md border-b border-purple-200 sticky top-0 z-40">
+      <header className="bg-white/10 backdrop-blur-md border-b border-white/20 sticky top-0 z-40 relative">
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
-            <h1 className="text-3xl font-bold bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent">
+            <h1 className="text-3xl font-bold text-white drop-shadow-lg">
               🎉 Розыгрыш Призов
             </h1>
             <nav className="hidden md:flex gap-6">
-              <a href="#home" className="text-foreground/80 hover:text-primary transition-colors font-medium">Главная</a>
-              <a href="#draw" className="text-foreground/80 hover:text-primary transition-colors font-medium">Розыгрыш</a>
-              <a href="#winners" className="text-foreground/80 hover:text-primary transition-colors font-medium">Победители</a>
-              <a href="#rules" className="text-foreground/80 hover:text-primary transition-colors font-medium">Правила</a>
-              <a href="#contact" className="text-foreground/80 hover:text-primary transition-colors font-medium">Контакты</a>
+              <a href="#home" className="text-white/90 hover:text-white transition-colors font-medium drop-shadow">Главная</a>
+              <a href="#rules" className="text-white/90 hover:text-white transition-colors font-medium drop-shadow">Правила</a>
+              <a href="#contact" className="text-white/90 hover:text-white transition-colors font-medium drop-shadow">Контакты</a>
             </nav>
           </div>
         </div>
       </header>
 
-      <main className="container mx-auto px-4 py-12 space-y-20">
-        <section id="home" className="text-center space-y-8 animate-fade-in">
+      <main className="container mx-auto px-4 py-12 space-y-20 relative z-10">
+        <section id="home" className="text-center space-y-8 animate-fade-in min-h-[80vh] flex flex-col justify-center">
           <div className="space-y-4">
-            <h2 className="text-6xl md:text-7xl font-extrabold bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent leading-tight">
+            <h2 className="text-6xl md:text-7xl font-extrabold text-white drop-shadow-2xl leading-tight">
               Испытай Удачу!
             </h2>
-            <p className="text-xl md:text-2xl text-foreground/70 max-w-2xl mx-auto">
+            <p className="text-xl md:text-2xl text-white/90 max-w-2xl mx-auto drop-shadow-lg">
               Введи свой счастливый номер и выиграй потрясающие призы 🎁
             </p>
           </div>
 
-          <div className="flex flex-wrap justify-center gap-4 text-5xl animate-bounce-in">
-            <span>🎁</span>
-            <span>💎</span>
-            <span>🎉</span>
-            <span>⭐</span>
-            <span>🎊</span>
-            <span>✨</span>
-          </div>
-
-          <Card className="max-w-md mx-auto shadow-2xl border-2 border-primary/20 animate-scale-in">
-            <CardHeader className="bg-gradient-to-r from-primary/10 via-secondary/10 to-accent/10">
+          <Card className="max-w-md mx-auto shadow-2xl border-2 border-white/30 bg-white/95 backdrop-blur-md animate-scale-in">
+            <CardHeader className="bg-gradient-to-r from-red-500/20 via-pink-500/20 to-rose-500/20">
               <CardTitle className="text-2xl text-center">Проверь свой номер</CardTitle>
               <CardDescription className="text-center">Может именно ты станешь следующим победителем?</CardDescription>
             </CardHeader>
@@ -109,11 +99,11 @@ export default function Index() {
                 value={luckyNumber}
                 onChange={(e) => setLuckyNumber(e.target.value)}
                 onKeyPress={(e) => e.key === 'Enter' && checkNumber()}
-                className="text-lg h-14 text-center border-2 border-primary/30 focus:border-primary"
+                className="text-lg h-14 text-center border-2 border-red-300 focus:border-red-500"
               />
               <Button
                 onClick={checkNumber}
-                className="w-full h-14 text-lg font-bold bg-gradient-to-r from-primary via-secondary to-accent hover:opacity-90 transition-all hover:scale-105"
+                className="w-full h-14 text-lg font-bold bg-gradient-to-r from-red-500 via-pink-500 to-rose-500 hover:opacity-90 transition-all hover:scale-105 text-white"
               >
                 Узнать результат! 🎯
               </Button>
@@ -163,89 +153,21 @@ export default function Index() {
           </Card>
         </section>
 
-        <section id="draw" className="space-y-8">
-          <h2 className="text-5xl font-bold text-center bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-            О Розыгрыше 🎲
-          </h2>
-          <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
-            {[
-              { icon: 'Gift', title: 'Крутые призы', desc: 'iPhone, MacBook, PlayStation и многое другое!' },
-              { icon: 'Users', title: 'Честная игра', desc: 'Прозрачная система определения победителей' },
-              { icon: 'Trophy', title: 'Каждый день', desc: 'Новые победители каждый день!' },
-            ].map((item, idx) => (
-              <Card key={idx} className="text-center hover:shadow-xl transition-all hover:scale-105 border-2 border-primary/20">
-                <CardContent className="pt-8 space-y-4">
-                  <div className="w-16 h-16 mx-auto bg-gradient-to-br from-primary to-secondary rounded-full flex items-center justify-center">
-                    <Icon name={item.icon as any} size={32} className="text-white" />
-                  </div>
-                  <h3 className="text-xl font-bold">{item.title}</h3>
-                  <p className="text-muted-foreground">{item.desc}</p>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </section>
-
-        <section id="winners" className="space-y-8">
-          <h2 className="text-5xl font-bold text-center bg-gradient-to-r from-secondary to-accent bg-clip-text text-transparent">
-            Топ Победителей 🏆
-          </h2>
-          <Card className="max-w-4xl mx-auto shadow-2xl border-2 border-secondary/20">
-            <CardContent className="p-0">
-              <div className="overflow-x-auto">
-                <table className="w-full">
-                  <thead className="bg-gradient-to-r from-primary/10 via-secondary/10 to-accent/10">
-                    <tr>
-                      <th className="px-6 py-4 text-left font-bold">Место</th>
-                      <th className="px-6 py-4 text-left font-bold">Победитель</th>
-                      <th className="px-6 py-4 text-left font-bold">Номер</th>
-                      <th className="px-6 py-4 text-left font-bold">Приз</th>
-                      <th className="px-6 py-4 text-left font-bold">Дата</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {topWinners.map((winner, idx) => (
-                      <tr key={idx} className="border-b hover:bg-purple-50/50 transition-colors">
-                        <td className="px-6 py-4">
-                          <div className="flex items-center gap-2">
-                            {idx === 0 && <span className="text-2xl">🥇</span>}
-                            {idx === 1 && <span className="text-2xl">🥈</span>}
-                            {idx === 2 && <span className="text-2xl">🥉</span>}
-                            {idx > 2 && <span className="text-xl font-bold text-muted-foreground">#{idx + 1}</span>}
-                          </div>
-                        </td>
-                        <td className="px-6 py-4 font-semibold">{winner.name}</td>
-                        <td className="px-6 py-4">
-                          <span className="bg-primary/20 text-primary px-3 py-1 rounded-full font-bold">
-                            {winner.number}
-                          </span>
-                        </td>
-                        <td className="px-6 py-4 text-lg">{winner.prize}</td>
-                        <td className="px-6 py-4 text-muted-foreground">{winner.date}</td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            </CardContent>
-          </Card>
-        </section>
-
         <section id="rules" className="space-y-8">
-          <h2 className="text-5xl font-bold text-center bg-gradient-to-r from-accent to-primary bg-clip-text text-transparent">
+          <h2 className="text-5xl font-bold text-center text-white drop-shadow-2xl">
             Правила Участия 📜
           </h2>
-          <Card className="max-w-3xl mx-auto shadow-2xl border-2 border-accent/20">
+          <Card className="max-w-3xl mx-auto shadow-2xl border-2 border-white/30 bg-white/95 backdrop-blur-md">
             <CardContent className="p-8 space-y-6">
               {[
-                { icon: 'CheckCircle2', text: 'Введи свой счастливый номер от 1 до 100' },
+                { icon: 'CheckCircle2', text: 'Введи свой счастливый номер от 1 до 10000' },
                 { icon: 'CheckCircle2', text: 'Если твой номер совпал с выигрышным - ты победил!' },
                 { icon: 'CheckCircle2', text: 'Свяжись с нами в Telegram для получения приза' },
                 { icon: 'CheckCircle2', text: 'Каждый участник может играть неограниченное количество раз' },
                 { icon: 'CheckCircle2', text: 'Призы выдаются в течение 24 часов после победы' },
               ].map((rule, idx) => (
                 <div key={idx} className="flex items-start gap-4">
-                  <Icon name={rule.icon as any} className="text-accent mt-1" size={24} />
+                  <Icon name={rule.icon as any} className="text-red-600 mt-1 flex-shrink-0" size={24} />
                   <p className="text-lg text-foreground/80">{rule.text}</p>
                 </div>
               ))}
@@ -253,11 +175,11 @@ export default function Index() {
           </Card>
         </section>
 
-        <section id="contact" className="text-center space-y-8">
-          <h2 className="text-5xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+        <section id="contact" className="text-center space-y-8 pb-12">
+          <h2 className="text-5xl font-bold text-white drop-shadow-2xl">
             Контакты 📱
           </h2>
-          <Card className="max-w-md mx-auto shadow-2xl border-2 border-primary/20">
+          <Card className="max-w-md mx-auto shadow-2xl border-2 border-white/30 bg-white/95 backdrop-blur-md">
             <CardContent className="pt-8 space-y-6">
               <p className="text-lg text-foreground/70">
                 Есть вопросы? Напиши нам в Telegram!
@@ -277,9 +199,9 @@ export default function Index() {
         </section>
       </main>
 
-      <footer className="bg-gradient-to-r from-primary/10 via-secondary/10 to-accent/10 border-t border-purple-200 mt-20">
+      <footer className="bg-white/10 backdrop-blur-md border-t border-white/20 mt-20 relative z-10">
         <div className="container mx-auto px-4 py-8 text-center">
-          <p className="text-foreground/60">
+          <p className="text-white/80 drop-shadow">
             © 2026 Розыгрыш Призов. Удачи! 🍀
           </p>
         </div>
